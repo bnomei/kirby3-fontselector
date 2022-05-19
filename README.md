@@ -28,7 +28,6 @@ Kirby 3 Plugin to select font family and font weight with two synced fields
 
 ## Screenshot
 
-### Section
 ![fontselector](https://raw.githubusercontent.com/bnomei/kirby3-fontselector/master/screenshot.gif)
 
 ## Fonts
