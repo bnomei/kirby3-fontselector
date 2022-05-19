@@ -1,0 +1,41 @@
+{
+  "name": "bnomei/kirby3-fontselector",
+  "description": "Kirby 3 Section to select font family and font weight with two synced fields",
+  "license": "MIT",
+  "type": "kirby-plugin",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Bruno Meilick",
+      "email": "b@bnomei.com"
+    }
+  ],
+  "keywords": [
+    "kirby3",
+    "kirby3-cms",
+    "kirby3-plugin",
+    "select",
+    "font",
+    "familiy",
+    "weight",
+    "sync",
+    "fields",
+    "changes",
+    "watch"
+  ],
+  "require": {
+    "getkirby/composer-installer": "^1.2"
+  },
+  "config": {
+    "allow-plugins": {
+      "getkirby/composer-installer": true
+    }
+  },
+  "scripts": {
+    "fix": "php-cs-fixer fix",
+    "dist": [
+      "composer install --no-dev --optimize-autoloader",
+      "git rm -rf --cached .; git add .;"
+    ]
+  }
+}
