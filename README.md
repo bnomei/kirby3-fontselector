@@ -82,12 +82,12 @@ fields:
     
   headlineh1weight:
     type: fontweight
-    watch: headlinefont
+    watchField: headlinefont
     default: 700
     
   headlineh2weight:
     type: fontweight
-    watch: headlinefont
+    watchField: headlinefont
     default: 600
 
   copytextfont:
@@ -96,7 +96,7 @@ fields:
 
   copytextweight:
     type: fontweight
-    watch: copytextfont
+    watchField: copytextfont
     default: 400
 ```
 
