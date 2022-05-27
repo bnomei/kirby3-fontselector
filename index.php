@@ -83,7 +83,7 @@ Kirby::plugin('bnomei/fontselector', [
             'props' => [
                 'options' => function () {
                     return array_map(
-                        fn ($item) => new Obj(['value' => $item, 'text' => $item]),
+                        fn ($item) => new Obj(['value' => strval($item), 'text' => $item]),
                         site()->fontFamilies()
                     );
                 },
@@ -106,7 +106,7 @@ Kirby::plugin('bnomei/fontselector', [
                     $options = [];
                     foreach (site()->fontWeight($family) as $key => $value) {
                         $options[] = new Obj([
-                            'value' => $key,
+                            'value' => strval($key),
                             'text' => $key . ' - ' . $value
                         ]);
                     }

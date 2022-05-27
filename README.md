@@ -79,25 +79,30 @@ fields:
   headlinefont:
     type: fontfamily
     default: Merriweather
+    required: true
     
   headlineh1weight:
     type: fontweight
     watchField: headlinefont
     default: 700
+    required: true
     
   headlineh2weight:
     type: fontweight
     watchField: headlinefont
     default: 600
+    required: true
 
   copytextfont:
     type: fontfamily
     default: Montserrat
+    required: true
 
   copytextweight:
     type: fontweight
     watchField: copytextfont
     default: 400
+    required: true
 ```
 
 > ⚠️ This plugin has by default a 1 minute cache.

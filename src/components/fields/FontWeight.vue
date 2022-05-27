@@ -4,9 +4,10 @@
                   :label="label"
                   :when="when"
                   :default="this.default"
-                  :value="value"
-                  :options="options" 
-                  @input="onInput"/>
+                  :options="options"
+                  :required="required"
+                 v-model="value"
+                 @input="onInput"/>
 </template>
 
 <script>
@@ -18,13 +19,12 @@ export default {
     watchField: String,
     default: String,
     value: String,
-    options: Array,
-    loading: {type: Boolean, default: false},
+    required: { type: Boolean, default: true },
   },
   data() {
     return {
-      resetToFont: undefined,
-      hasUserChange: false,
+      options: [],
+      loading: false,
     }
   },
   created() {
@@ -33,24 +33,18 @@ export default {
     )
   },
   watch: {
-    hasChanges() {
-      // post save or on revert
-      if (this.hasChanges && this.watchField in this.$store.getters["content/changes"]()) {
-        this.syncContent(
-          this.$store.getters["content/changes"]()[this.watchField]
-        )
-      } 
-
-      if (!this.hasChanges) {
-        this.syncContent(
-          this.resetToFont
-        )
-      }
+    fontFamily() {
+      this.syncContent(
+          this.fontFamily
+      )
     }
   },
   computed: {
     hasChanges() {
-      return this.$store.getters["content/hasChanges"]();
+      return this.$store.getters["content/hasChanges"]()
+    },
+    fontFamily() {
+      return this.$store.getters["content/values"]()[this.watchField]
     },
   },
   methods: {
@@ -58,13 +52,17 @@ export default {
       this.$emit("input", value);
     },
     syncContent(family) {
+      if (family === undefined || family.length === 0) {
+        this.options = []
+        this.onInput('') // needs to be a string not null
+        return
+      }
       this.$api.get('fontselector/family/' + encodeURIComponent(family))
           .then(response => {
-            this.options = response.weight
-            if (!this.resetToFont) {
-              this.resetToFont = response.font
+            this.options = response.weight ? response.weight : []
+            if (this.options.some((item) => item.value === this.value) === false) {
+              this.onInput('') // needs to be a string not null
             }
-            // this.value = this.value // force refresh?
             this.loading = false
           })
           .catch(error => {
