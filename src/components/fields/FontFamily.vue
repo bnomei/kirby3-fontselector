@@ -4,6 +4,7 @@
                   :label="label"
                   :when="when"
                   :default="this.default"
+                  :disabled="disabled"
                   :value="value"
                   :options="options"
                   @input="onInput"/>
@@ -16,6 +17,7 @@ export default {
     label: String,
     when: String,
     default: String,
+    disabled: Boolean,
     value: String,
     options: Array,
     loading: {type: Boolean, default: false},
