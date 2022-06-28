@@ -3,7 +3,7 @@
   "description": "Kirby 3 Section to select font family and font weight with two synced fields",
   "license": "MIT",
   "type": "kirby-plugin",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "authors": [
     {
       "name": "Bruno Meilick",
