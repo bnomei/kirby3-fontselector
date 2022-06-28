@@ -4,6 +4,7 @@
                   :label="label"
                   :when="when"
                   :default="this.default"
+                  :disabled="disabled"
                   :options="options"
                   :required="required"
                  v-model="value"
@@ -18,6 +19,7 @@ export default {
     when: String,
     watchField: String,
     default: String,
+    disabled: Boolean,
     value: String,
     required: { type: Boolean, default: true },
   },
