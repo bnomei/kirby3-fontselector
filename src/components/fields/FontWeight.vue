@@ -59,6 +59,7 @@ export default {
         this.onInput('') // needs to be a string not null
         return
       }
+      this.loading = true
       this.$api.get('fontselector/family/' + encodeURIComponent(family))
           .then(response => {
             this.options = response.weight ? response.weight : []

@@ -17,7 +17,7 @@ Kirby::plugin('bnomei/fontselector', [
                 'fonts' => [
                     [
                         'font' => 'Merriweather',
-                        'weight' => [600, 500, 400,],
+                        'weight' => [700, 600, 500, 400,],
                     ],
                     [
                         'font' => 'Montserrat',
@@ -87,18 +87,38 @@ Kirby::plugin('bnomei/fontselector', [
                         site()->fontFamilies()
                     );
                 },
-                'default' => fn ($default) => $default,
+                'default' => fn ($default = null) => $default,
+                'reload' => fn ($reload = null) => $reload ?? false,
             ],
         ],
         'fontweight' => [
             'props' => [
-                'default' => fn ($default) => $default,
+                'default' => fn ($default = null) => $default,
                 'watchField' => fn ($fieldname) => $fieldname,
             ],
         ],
     ],
     'api' => [
         'routes' => [
+            [
+                'pattern' => 'fontselector/families',
+                'action' => function () {
+                    if(get('reload') === '1') {
+                        kirby()->cache('bnomei.fontselector')->flush();
+                    }
+
+                    $options = [];
+                    foreach (site()->fontFamilies() as $value) {
+                        $options[] = new Obj([
+                            'value' => strval($value),
+                            'text' => $value
+                        ]);
+                    }
+                    return [
+                        'families' => $options
+                    ];
+                },
+            ],
             [
                 'pattern' => 'fontselector/family/(:any)',
                 'action' => function ($family) {

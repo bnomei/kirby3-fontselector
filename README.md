@@ -62,7 +62,7 @@ Set the fonts you want to use with a config value. You could use a custom JSON f
 
 return [
     'bnomei.fontselector.fonts' => function() {
-        return Json::read(kirby()->roots()->assets() . '/fonts.json'),
+        return Json::read(kirby()->roots()->assets() . '/fonts.json');
         // return ['fonts' => [...]];
     },
     // other options
@@ -80,6 +80,7 @@ fields:
     type: fontfamily
     default: Merriweather
     required: true
+    # reload: true # optional reload on save  
     
   headlineh1weight:
     type: fontweight
