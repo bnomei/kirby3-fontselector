@@ -1,8 +1,6 @@
 # Kirby Font Selector
 
 ![Release](https://flat.badgen.net/packagist/v/bnomei/kirby3-fontselector?color=ae81ff)
-![Downloads](https://flat.badgen.net/packagist/dt/bnomei/kirby3-fontselector?color=272822)
-[![Twitter](https://flat.badgen.net/badge/twitter/bnomei?color=66d9ef)](https://twitter.com/bnomei)
 
 Kirby Plugin to select font family and font weight with two synced fields
 
