@@ -90,7 +90,8 @@ fields:
     required: true
 ```
 
-> ⚠️ This plugin has by default a 1 minute cache.
+> [!WARNING]
+> This plugin has by default a 1 minute cache.
 
 
 ## Settings
