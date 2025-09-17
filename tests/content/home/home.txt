@@ -1,0 +1,25 @@
+Title: FSS
+
+----
+
+Headlinefont: Merriweather
+
+----
+
+Headlineh1weight: 700
+
+----
+
+Headlineh2weight: 600
+
+----
+
+Copytextfont: Montserrat
+
+----
+
+Copytextweight: 400
+
+----
+
+Uuid: home

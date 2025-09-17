@@ -1,0 +1,19 @@
+{
+  "fonts": [
+    {
+      "font": "Merriweather",
+      "weight": [
+        600,
+        700
+      ]
+    },
+    {
+      "font": "Montserrat",
+      "weight": [
+        300,
+        400,
+        500
+      ]
+    }
+  ]
+}

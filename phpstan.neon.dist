@@ -1,0 +1,14 @@
+parameters:
+    level: 9
+    paths:
+        - index.php
+    excludePaths:
+        - tests
+
+    ignoreErrors:
+        - '#Call to an undefined method Kirby\\Cms\\Site::#'
+        - '/Parameter #1 \$value of function floatval expects/'
+        - '/Parameter #1 \$value of function intval expects/'
+        - '/Parameter #1 \$value of function strval expects/'
+        -
+            identifier: missingType.iterableValue

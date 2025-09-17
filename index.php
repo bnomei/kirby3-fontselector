@@ -1,40 +1,38 @@
 <?php
 
-@include_once __DIR__ . '/vendor/autoload.php';
+@include_once __DIR__.'/vendor/autoload.php';
 
 use Kirby\Cms\App as Kirby;
-use Kirby\Filesystem\Dir;
-use Kirby\Filesystem\F;
+use Kirby\Toolkit\A;
 use Kirby\Toolkit\Obj;
 
 Kirby::plugin('bnomei/fontselector', [
     'options' => [
-        'fonts' => function () {
+        'fonts' => fn () =>
             // overwrite this config if you want to use a php array directly
             // for performance reasons or load file from somewhere else
             // return Json::read(__DIR__ . '/fonts.json');
-            return [
+            [
                 'fonts' => [
                     [
                         'font' => 'Merriweather',
-                        'weight' => [700, 600, 500, 400,],
+                        'weight' => [700, 600, 500, 400],
                     ],
                     [
                         'font' => 'Montserrat',
-                        'weight' => [900, 800, 700, 600, 500, 400, 300, 200, 100,],
+                        'weight' => [900, 800, 700, 600, 500, 400, 300, 200, 100],
                     ],
                 ],
-            ];
-        },
+            ],
         'cache' => true,
         'expire' => 1, // 60*24*7, // in minutes
     ],
-    'translations' => require __DIR__ . '/i18n/index.php',
+    'translations' => require __DIR__.'/i18n/index.php',
     'siteMethods' => [
         'fontFamilies' => function (): array {
             $families = kirby()->cache('bnomei.fontselector')->get('families');
 
-            if (!$families) {
+            if (! $families) {
                 $families = array_map(
                     fn ($item) => A::get($item, 'font'),
                     option('bnomei.fontselector.fonts')()['fonts']
@@ -48,10 +46,10 @@ Kirby::plugin('bnomei/fontselector', [
 
             return $families;
         },
-        'fontWeight' => function (string $family): ?array {
-            $weights = kirby()->cache('bnomei.fontselector')->get('family-' . $family);
+        'fontWeight' => function (string $family): array {
+            $weights = kirby()->cache('bnomei.fontselector')->get('family-'.$family);
 
-            if (!$weights) {
+            if (! $weights) {
                 $fontWeights =
                     array_map(
                         fn ($item) => A::get($item, 'weight'),
@@ -59,17 +57,16 @@ Kirby::plugin('bnomei/fontselector', [
                             option('bnomei.fontselector.fonts')()['fonts'],
                             fn ($item) => A::get($item, 'font') === $family
                         )
-                    )
-                ;
+                    );
                 if (count($fontWeights)) {
                     $fontWeights = array_shift($fontWeights);
                 }
                 $weights = [];
                 foreach ($fontWeights as $weight) {
-                    $weights[$weight] = t('fontselector.weight.' . $weight);
+                    $weights[$weight] = t('fontselector.weight.'.$weight);
                 }
                 kirby()->cache('bnomei.fontselector')->set(
-                    'family-' . $family,
+                    'family-'.$family,
                     $weights,
                     intval(option('bnomei.fontselector.expire'))
                 );
@@ -81,12 +78,10 @@ Kirby::plugin('bnomei/fontselector', [
     'fields' => [
         'fontfamily' => [
             'props' => [
-                'options' => function () {
-                    return array_map(
-                        fn ($item) => new Obj(['value' => strval($item), 'text' => $item]),
-                        site()->fontFamilies()
-                    );
-                },
+                'options' => fn () => array_map(
+                    fn ($item) => new Obj(['value' => strval($item), 'text' => $item]),
+                    site()->fontFamilies()
+                ),
                 'default' => fn ($default = null) => $default,
                 'reload' => fn ($reload = null) => $reload ?? false,
             ],
@@ -103,7 +98,7 @@ Kirby::plugin('bnomei/fontselector', [
             [
                 'pattern' => 'fontselector/families',
                 'action' => function () {
-                    if(get('reload') === '1') {
+                    if (get('reload') === '1') {
                         kirby()->cache('bnomei.fontselector')->flush();
                     }
 
@@ -111,28 +106,30 @@ Kirby::plugin('bnomei/fontselector', [
                     foreach (site()->fontFamilies() as $value) {
                         $options[] = new Obj([
                             'value' => strval($value),
-                            'text' => $value
+                            'text' => $value,
                         ]);
                     }
+
                     return [
-                        'families' => $options
+                        'families' => $options,
                     ];
                 },
             ],
             [
                 'pattern' => 'fontselector/family/(:any)',
                 'action' => function ($family) {
-                    $family = urldecode($family);
+                    $family = urldecode((string) $family);
                     $options = [];
                     foreach (site()->fontWeight($family) as $key => $value) {
                         $options[] = new Obj([
                             'value' => strval($key),
-                            'text' => $key . ' - ' . $value
+                            'text' => $key.' - '.$value,
                         ]);
                     }
+
                     return [
                         'font' => $family,
-                        'weight' => $options
+                        'weight' => $options,
                     ];
                 },
             ],

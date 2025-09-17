@@ -1,15 +1,18 @@
 # OS files
 .DS_Store
 .idea
+.nova
 *.cache
+
+node_modules
 
 /tests/kirby
 /tests/logs
-/tests/site/config/config.php
 /tests/media
-/tests/*.sqlite
 /tests/site/accounts
 /tests/site/cache
+/tests/site/sessions
+/tests/janitor-*.php
 
 # files of Composer dependencies that are not needed for the plugin
 /vendor/**/.*
@@ -31,10 +34,8 @@
 /vendor/**/tests/*
 /vendor/**/php4/*
 /vendor/getkirby/composer-installer
-coverage.xml
-/vendor/**/Dockerfile
-/tests/site/sessions/
-/tests/site/logs/
-/node_modules/
 
-*.sqlite
+/tests/site/backups/
+/tests/site/graveyard/
+/tests/clover.xml
+/build/logs/clover.xml

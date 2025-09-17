@@ -1,0 +1,31 @@
+preset: page
+
+fields:
+  headlinefont:
+    type: fontfamily
+    default: Merriweather
+    required: true
+    # reload: true # optional reload on save
+
+  headlineh1weight:
+    type: fontweight
+    watchField: headlinefont
+    default: 700
+    required: true
+
+  headlineh2weight:
+    type: fontweight
+    watchField: headlinefont
+    default: 600
+    required: true
+
+  copytextfont:
+    type: fontfamily
+    default: Montserrat
+    required: true
+
+  copytextweight:
+    type: fontweight
+    watchField: copytextfont
+    default: 400
+    required: true
