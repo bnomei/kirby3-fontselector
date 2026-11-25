@@ -1,6 +1,6 @@
 # Kirby Font Selector
 
-[![Kirby 5](https://flat.badgen.net/badge/Kirby/5?color=ECC748)](https://getkirby.com)
+[![Kirby 6](https://flat.badgen.net/badge/Kirby/6?color=ECC748)](https://getkirby.com)
 ![Release](https://flat.badgen.net/github/release/bnomei/kirby3-fontselector?color=ae81ff&icon=github&label)
 [![Discord](https://flat.badgen.net/badge/discord/bnomei?color=7289da&icon=discord&label)](https://discordapp.com/users/bnomei)
 [![Buymecoffee](https://flat.badgen.net/badge/icon/donate?icon=buymeacoffee&color=FF813F&label)](https://www.buymeacoffee.com/bnomei)
@@ -8,6 +8,8 @@
 Kirby Plugin to select font family and font weight with two synced fields
 
 ## Installation
+
+Requires Kirby 6 and PHP 8.3 or newer. To rebuild the Panel bundle from source, use Node.js 24 or newer and run `npm ci && npm run build`.
 
 - unzip [master.zip](https://github.com/bnomei/kirby3-fontselector/archive/master.zip) as folder `site/plugins/kirby3-fontselector` or
 - `git submodule add https://github.com/bnomei/kirby3-fontselector.git site/plugins/kirby3-fontselector` or
