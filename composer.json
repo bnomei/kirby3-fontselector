@@ -3,7 +3,7 @@
   "description": "Kirby Section to select font family and font weight with two synced fields",
   "license": "MIT",
   "type": "kirby-plugin",
-  "version": "5.0.1",
+  "version": "6.0.0",
   "authors": [
     {
       "name": "Bruno Meilick",
@@ -24,11 +24,11 @@
     "watch"
   ],
   "require": {
-    "php": ">=8.2",
+    "php": ">=8.3",
     "getkirby/composer-installer": "^1.2"
   },
   "require-dev": {
-    "getkirby/cms": "^5.1.0",
+    "getkirby/cms": "^6.0",
     "larastan/larastan": "^v3.0.0",
     "laravel/pint": "^1.13",
     "pestphp/pest": "^v3.5.1",
@@ -36,7 +36,7 @@
     "rector/rector": "^2.1"
   },
   "conflict": {
-    "getkirby/cms": "<5.0"
+    "getkirby/cms": "<6.0 || >=7.0"
   },
   "config": {
     "allow-plugins": {
@@ -54,15 +54,14 @@
       "git rm -rf --cached .; git add .;"
     ],
     "kirby": [
-      "composer install",
-      "composer update",
-      "composer install --working-dir=tests/kirby --no-dev --optimize-autoloader",
-      "composer update --working-dir=tests/kirby",
-      "sed -i.bak 's/function dump(/function xdump(/g' tests/kirby/config/helpers.php",
+      "@composer install",
       "sed -i.bak 's/function e(/function xe(/g' tests/kirby/config/helpers.php"
     ]
   },
   "extra": {
+    "kirby": {
+      "compatible": "^6.0"
+    },
     "kirby-cms-path": "tests/kirby"
   }
 }

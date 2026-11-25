@@ -5,6 +5,7 @@
 *.cache
 
 node_modules
+/index.dev.js
 
 /tests/kirby
 /tests/logs
